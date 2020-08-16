@@ -25,7 +25,7 @@ const blocksHomeDetails = (homeParams) => {
       "type": "section",
       "text": {
         "type": "mrkdwn",
-        "text": `_Larger promotion of your event presence._\n• Brand can share your upcoming event on various social media channels\n• Teams such as Product Marketing and Growth can highlight your upcoming event in newsletters, promotional materials, mention it at other (earlier) events, etc.\n• DevRel can share your event with the developer community and developer programs`
+        "text": `_Larger promotion of your event presence._\n• We can share your upcoming event on various social media channels\n• We can highlight your upcoming event in newsletters, promotional materials, mention it at other (earlier) events, etc.\n• We can also share your event with the developer community and developer programs`
       }
     },
     {

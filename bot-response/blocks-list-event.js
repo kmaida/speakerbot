@@ -19,7 +19,7 @@ const blocksListEvent = (prefill = {}) => {
     eventUrl('a_url', prefill.url),
     speakers('a_speakers', 'Who is speaking at this event?', prefill.speakers),
     eventType('a_event_type', prefill.event_type),
-    topic('a_topic', 'What are you speaking about?', prefill.topic),
+    topic('a_topic', 'What will you speak about?', prefill.topic),
     notes('a_notes', prefill.notes)
   ]
 };

@@ -12,7 +12,7 @@ module.exports = (aid, initial) => {
       "multiline": true,
       "placeholder": {
         "type": "plain_text",
-        "text": "Please provide any additional information you'd like to share about this event. How can DevRel help support you?"
+        "text": "Special information or additional details"
       },
       "initial_value": initial
     },
@@ -20,6 +20,10 @@ module.exports = (aid, initial) => {
       "type": "plain_text",
       "text": "Notes:"
     },
-    "optional": true
+    "optional": true,
+    "hint": {
+      "type": "plain_text",
+      "text": "Please provide any additional information you'd like to share about this event. How can we help support you? What should we keep in mind when promoting?"
+    }
   };
 };

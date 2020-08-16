@@ -9,6 +9,7 @@ module.exports = (aid, placeholder, initial) => {
     "element": {
       "type": "plain_text_input",
       "action_id": aid,
+      "multiline": true,
       "placeholder": {
         "type": "plain_text",
         "text": placeholder
@@ -18,6 +19,10 @@ module.exports = (aid, placeholder, initial) => {
     "label": {
       "type": "plain_text",
       "text": "Topic:"
+    },
+    "hint": {
+      "type": "plain_text",
+      "text": "Please provide your talk/workshop title and abstract or agenda."
     }
   };
 }
