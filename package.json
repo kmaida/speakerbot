@@ -1,0 +1,30 @@
+{
+  "name": "speakerbot",
+  "version": "0.3.0",
+  "description": "Slack app for managing internal speaker events",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@slack/bolt": "^2.2.3",
+    "airtable": "^0.9.0",
+    "dotenv": "^8.2.0",
+    "mongoose": "^5.10.0",
+    "cron": "^1.8.2",
+    "safe-timers": "^1.1.0"
+  },
+  "engines": {
+    "node": "12.x"
+  },
+  "author": "Kim Maida",
+  "repository": {
+    "url": "https://github.com/kmaida/speakerbot"
+  },
+  "license": "GPL-3.0-or-later",
+  "keywords": [
+    "slackapi",
+    "slackapp",
+    "airtable"
+  ]
+}
