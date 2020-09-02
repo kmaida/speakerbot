@@ -18,7 +18,7 @@ const blocksHomeDetails = (homeParams) => {
       "type": "section",
       "text": {
         "type": "mrkdwn",
-        "text": `_Support for speakers._\n• We can offer you content and slide reviews, as well as rehearsal opportunities\n• Get speaking tips and/or professional speaker coaching\n• Get swag to give away at the event\n• Align on messaging / topic suggestions if you're looking for something to speak about\n• Get equipment or other physical resources (microphones, webcams, slide advancers, lights, adapters, etc.)`
+        "text": `_Support for speakers._\n• We can offer you content and slide reviews, as well as rehearsal opportunities\n• Get speaking tips, coaching, review, etc.\n• Get swag to give away at the event\n• Align on messaging / topic suggestions if you're looking for something to speak about\n• Get equipment or other physical resources (microphones, webcams, slide advancers, lights, adapters, etc.)`
       }
     },
     {
