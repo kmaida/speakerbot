@@ -38,6 +38,8 @@ Now we need to set up a base and table to store events and event reports.
     * `4`
   * **Post Event Report** | Long text (enable rich text formatting)
   * **Submitter Slack ID** | Single line text
+  * _**Quarter**_ | Formula: `DATETIME_FORMAT(Date,'Q')` | _optional; for grouping / sorting_
+  * _**Report Completed**_ | Formula: `IF({Post Event Report},"Yes","No")` | _optional; for grouping / sorting_
 8. When finished, your table's column headings should look like this:
 ![Airtable column headings](airtable-fields.png)
 9. Add your table's name to your `.env` file in the `AIRTABLE_TABLE` variable.
