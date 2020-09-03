@@ -8,7 +8,7 @@ const blocksHomeIntro = (homeParams) => {
       "type": "section",
       "accessory": {
         "type": "image",
-        "image_url": "https://avatars.slack-edge.com/2020-05-15/1127091402914_367a18732ae0e6103825_512.png",
+        "image_url": "https://avatars.slack-edge.com/2020-09-03/1326965874743_b0eda94d280e28d3fb71_72.png",
         "alt_text": "speakerbot"
       },
       "text": {
