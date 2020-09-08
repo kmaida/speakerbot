@@ -70,19 +70,19 @@ const jobs = {
     if (userID) dmSyncEvents(app, userID, errSlack);
   },
   /**
-   * Reschedule events / update home views
+   * Sync all events with Airtable every 12 hours
    * @param {App} app Slack App
    * @param {module} at Airtable module
    * @param {module} store MongoDB module
    */
   setupEventSyncs(app, at, store) {
     const job = new cron.CronJob({
-      cronTime: '0 0 * * *',
+      cronTime: '0 0/12 * * *',
       onTick: jobs.syncAllEvents(app, at, store),
       timeZone: 'America/Detroit'
     });
     // Log next 3 scheduled dates
-    console.log('JOBS: next 3 nightly event syncs scheduled for', job.nextDates(3).map(date => date.toString()));
+    console.log('JOBS: next 3 event syncs scheduled for', job.nextDates(3).map(date => date.toString()));
     job.start();
   }
 };
