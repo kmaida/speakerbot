@@ -38,7 +38,9 @@ const publishWeekly = async (app, eventsArr) => {
             }
           ]
         }
-      ]
+      ],
+      unfurl_links: false,
+      unfurl_media: false
     });
   }
   catch (err) {

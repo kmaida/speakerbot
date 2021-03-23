@@ -37,7 +37,9 @@ const publishSlackReport = async (app, data, savedObj, edit) => {
             }
           ]
         }
-      ]
+      ],
+      unfurl_links: false,
+      unfurl_media: false
     });
   }
   catch (err) {
