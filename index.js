@@ -23,6 +23,8 @@ mongoose.set('useUnifiedTopology', true);
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true });
 const mon = mongoose.connection;
+// Turn off buffering so Mongo connects before calling models
+mon.set('bufferCommands', false);
 // Capture connection errors
 mon.on('error', console.error.bind(console, 'MongoDB Connection Error. Please make sure that', process.env.MONGO_URI, 'is running.'));
 // Open connection
