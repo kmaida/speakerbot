@@ -31,31 +31,6 @@ const port = process.env.PORT || 3000;
 //   });
 // });
 
-mongoose
-  .connect(process.env.MONGO_URI, {
-    useCreateIndex: true,
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false
-  })
-  .then(x => {
-    console.log(
-      `Connected to Mongo! Database name: "${x.connections[0].name}"`
-    );
-  })
-  .catch(err => {
-    console.error("Error connecting to mongo", err);
-  });
-
-/*------------------
-    ON APP INIT
-------------------*/
-// Get bot configuration settings from MongoDB
-store.initSettings();
-// Set up weekly roundups
-jobs.eventsThisWeek(app, at);
-// Schedule followups and set up nightly event syncs
-jobs.setupEventSyncs(app, at, store);
 
 /*------------------
      TRIGGERS
@@ -89,7 +64,49 @@ require('./events/bot-dm')(app);
 /*------------------
      START APP
 ------------------*/
-(async () => {
-  await app.start(port);
-  console.log(`⚡️ speakerbot is running on ${port}!`);
-})();
+// (async () => {
+//   await app.start(port);
+//   console.log(`⚡️ speakerbot is running on ${port}!`);
+// })();
+
+
+
+
+
+mongoose
+  .connect(process.env.MONGO_URI, {
+    useCreateIndex: true,
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false
+  })
+  .then(x => {
+    console.log(
+      `Connected to Mongo! Database name: "${x.connections[0].name}"`
+    );
+    // Get bot configuration settings from MongoDB
+    store.initSettings();
+    // Set up weekly roundups
+    jobs.eventsThisWeek(app, at);
+    // Schedule followups and set up nightly event syncs
+    jobs.setupEventSyncs(app, at, store);
+
+    (async () => {
+      await app.start(port);
+      console.log(`⚡️ speakerbot is running on ${port}!`);
+    })();
+  })
+  .catch(err => {
+    console.error("Error connecting to mongo", err);
+  });
+
+/*------------------
+    ON APP INIT
+------------------*/
+// Get bot configuration settings from MongoDB
+// store.initSettings();
+// // Set up weekly roundups
+// jobs.eventsThisWeek(app, at);
+// // Schedule followups and set up nightly event syncs
+// jobs.setupEventSyncs(app, at, store);
+
