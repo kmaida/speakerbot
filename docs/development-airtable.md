@@ -15,7 +15,7 @@ Now we need to set up a base and table to store events and event reports.
   * **Name** | Single line text
   * **Date** | Date | Date format: `ISO (2020-06-16)`
   * **Location** | Single line text
-  * **Event URL** | Single line text
+  * **Event URL** | URL
   * **Who's speaking?** | Single line text
   * **Event Type** | Single select
     * `Conference`
@@ -46,7 +46,7 @@ Now we need to set up a base and table to store events and event reports.
 10. Examine the table's URL in the browser. It should look something like this: `https://airtable.com/[tblXXXxxx]/[viwXXXxxx]?blocks=...`
 11. Copy the segment of the URL that begins with "tbl" to `.env` as the `AIRTABLE_TABLE_ID` variable.
 12. Copy the segment of the URL that begins with "viw" to `.env` as the `AIRTABLE_VIEW_ID` variable. (It should be the "Grid view.")
-13. In the upper right of your base view, you should see a link that says `HELP (?)`.
+13. In the upper right of your base view, you should see an icon of a question mark: `(?)`.
 ![Airtable upper right menu items](airtable-menu.png)<br>
 Click on this link and in the dropdown, choose **API Documentation**. This opens the API docs for your base.
 14. In the Airtable API Introduction section, find the line that says:
@@ -55,7 +55,7 @@ The ID of this base is appXXXXXX.
 ```
 15. Copy the base ID and paste it into your `.env` file as the `AIRTABLE_BASE_ID` variable.
 16. Now return to your base view. In the upper right corner, click on your avatar icon and choose **Account** from the dropdown.
-17. You should now see your **Account overview** page. In the "API" section, there is a personal API key (displayed as dots in an input field). Click in the field to view the text contents. It should reveal a string starting with "key." Copy this API key and paste it into your `.env` file as `AIRTABLE_API_KEY`.
+17. You should now see your **Account overview** page. In the "API" section, you should see a prompt to generate an API key. After you've done this, there is a personal API key (displayed as dots in an input field). Click in the field to view the text contents. It should reveal a string starting with "key." Copy this API key and paste it into your `.env` file as `AIRTABLE_API_KEY`.
 18. Save your `.env` changes.
 
 You are now ready to use Airtable as your data source for events! Head back to the [Development docs](development.md) or you can move to the next step: [Development: MongoDB Setup](development-mongodb.md).
