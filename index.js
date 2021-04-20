@@ -19,23 +19,33 @@ const port = process.env.PORT || 3000;
       MONGODB
 ------------------*/
 // Address server discovery deprecation warning
-mongoose.set('useUnifiedTopology', true);
-// Connect to MongoDB
-const connectMDB = async () => {
-  try {
-    await mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true });
-  } catch (err) {
-    console.log('Error: ' + err);
-  }
-};
-connectMDB();
-const mon = mongoose.connection;
-// Capture connection errors
-mon.on('error', console.error.bind(console, 'MongoDB Connection Error. Please make sure that', process.env.MONGO_URI, 'is running.'));
-// Open connection
-mon.once('open', function () {
-  console.info('Connected to MongoDB:', process.env.MONGO_URI);
-});
+// mongoose.set('useUnifiedTopology', true);
+// // Connect to MongoDB
+// mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true }, (err) => {
+//   const mon = mongoose.connection;
+//   // Capture connection errors
+//   mon.on('error', console.error.bind(console, 'MongoDB Connection Error. Please make sure that', process.env.MONGO_URI, 'is running.'));
+//   // Open connection
+//   mon.once('open', function () {
+//     console.info('Connected to MongoDB:', process.env.MONGO_URI);
+//   });
+// });
+
+mongoose
+  .connect(process.env.MONGO_URI, {
+    useCreateIndex: true,
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false
+  })
+  .then(x => {
+    console.log(
+      `Connected to Mongo! Database name: "${x.connections[0].name}"`
+    );
+  })
+  .catch(err => {
+    console.error("Error connecting to mongo", err);
+  });
 
 /*------------------
     ON APP INIT
