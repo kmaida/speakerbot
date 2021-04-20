@@ -11,6 +11,8 @@ It's time to set up our new Slack app that will become Speakerbot. We'll need cr
 
 ### Basic Information
 
+* Click the button to install the app to your workspace.
+
 **App Credentials**
 
 * Copy the **App ID** and add it to your `.env` file's `SLACK_APP_ID`.
@@ -43,7 +45,7 @@ You can modify your app's display name and bot name here. The bot's name should 
 
 ## Install Slack App
 
-At this point, we need to install our Slack app to our Slack workspace to generate a bot token. Go to the **Install App** sidebar item in your Slack App Settings and click the **Install App** button.
+At this point, we need to re-install our Slack app to our Slack workspace to update permissions. You can do this from the notice that appears at the top of the page when saving these changes, or go to the **Install App** sidebar item in your Slack App Settings and click the **Install App** button.
 
 You will receive a prompt telling you that Speakerbot is requesting permission to access your workspace. You may also be prompted to choose the channel that Speakerbot posts to. Select the channel you created in the [Initial Setup](development.md#initial-setup) section.
 
