@@ -16,23 +16,6 @@ const app = new App({
 const port = process.env.PORT || 3000;
 
 /*------------------
-      MONGODB
-------------------*/
-// Address server discovery deprecation warning
-// mongoose.set('useUnifiedTopology', true);
-// // Connect to MongoDB
-// mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true }, (err) => {
-//   const mon = mongoose.connection;
-//   // Capture connection errors
-//   mon.on('error', console.error.bind(console, 'MongoDB Connection Error. Please make sure that', process.env.MONGO_URI, 'is running.'));
-//   // Open connection
-//   mon.once('open', function () {
-//     console.info('Connected to MongoDB:', process.env.MONGO_URI);
-//   });
-// });
-
-
-/*------------------
      TRIGGERS
 ------------------*/
 require('./triggers/trigger-new')(app);
@@ -62,16 +45,8 @@ require('./events/app-mention')(app);
 require('./events/bot-dm')(app);
 
 /*------------------
-     START APP
+   START DB & APP
 ------------------*/
-// (async () => {
-//   await app.start(port);
-//   console.log(`⚡️ speakerbot is running on ${port}!`);
-// })();
-
-
-
-
 
 mongoose
   .connect(process.env.MONGO_URI, {
@@ -81,16 +56,14 @@ mongoose
     useFindAndModify: false
   })
   .then(x => {
-    console.log(
-      `Connected to Mongo! Database name: "${x.connections[0].name}"`
-    );
+    console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`);
     // Get bot configuration settings from MongoDB
     store.initSettings();
     // Set up weekly roundups
     jobs.eventsThisWeek(app, at);
     // Schedule followups and set up nightly event syncs
     jobs.setupEventSyncs(app, at, store);
-
+    // Start the Slack app
     (async () => {
       await app.start(port);
       console.log(`⚡️ speakerbot is running on ${port}!`);
@@ -99,14 +72,3 @@ mongoose
   .catch(err => {
     console.error("Error connecting to mongo", err);
   });
-
-/*------------------
-    ON APP INIT
-------------------*/
-// Get bot configuration settings from MongoDB
-// store.initSettings();
-// // Set up weekly roundups
-// jobs.eventsThisWeek(app, at);
-// // Schedule followups and set up nightly event syncs
-// jobs.setupEventSyncs(app, at, store);
-
