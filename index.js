@@ -21,10 +21,15 @@ const port = process.env.PORT || 3000;
 // Address server discovery deprecation warning
 mongoose.set('useUnifiedTopology', true);
 // Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true });
+const connectMDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true });
+  } catch (err) {
+    console.log('Error: ' + err);
+  }
+};
+connectMDB();
 const mon = mongoose.connection;
-// Turn off buffering so Mongo connects before calling models
-mon.set('bufferCommands', false);
 // Capture connection errors
 mon.on('error', console.error.bind(console, 'MongoDB Connection Error. Please make sure that', process.env.MONGO_URI, 'is running.'));
 // Open connection
