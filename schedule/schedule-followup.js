@@ -24,8 +24,8 @@ const schedule = {
     // Uncomment below for testing followup feature
     // const followupAt = new Date().getTime() + 5000;
     const now = new Date().getTime();
-    // If followup time has not passed
-    if (now < followupAt) {
+    // If followup time has not passed and there is no report completed
+    if (now < followupAt && !record.fields['Event Rating']) {
       const eventObj = {
         id: record.getId(),
         event_name: record.fields['Name'],
