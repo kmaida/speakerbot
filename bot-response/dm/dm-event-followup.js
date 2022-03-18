@@ -7,9 +7,9 @@ const slackErr = require('./../../utils/error-slack');
 ------------------*/
 
 module.exports = async (app, recordObj) => {
-  // Notify user they should fill out the post-event form if they haven't already filled one out
+  // Notify user they should fill out the post-event form (if they haven't already filled one out)
   try {
-    if (!recordObj.event_report) {
+    if (!recordObj.event_rating) {
       const confirmDM = await app.client.chat.postMessage({
         token: process.env.SLACK_BOT_TOKEN,
         channel: recordObj.submitterID,

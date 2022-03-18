@@ -8,7 +8,7 @@ const slackErr = require('./../../utils/error-slack');
 module.exports = async (app, recordObj) => {
   const settings = await store.getSettings();
   const channel = settings.channel;
-  // Notify user they should fill out the post-event form if they haven't already
+  // Notify user they should fill out the post-event form if they haven't filled out a report already
   try {
     if (!recordObj.event_rating) {
       const channelMsgFollowup = await app.client.chat.postMessage({
