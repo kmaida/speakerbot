@@ -24,25 +24,26 @@ const schedule = {
     // Uncomment below for testing followup feature
     // const followupAt = new Date().getTime() + 5000;
     const now = new Date().getTime();
+    const eventObj = {
+      id: record.getId(),
+      event_name: record.fields['Name'],
+      event_date: record.fields['Date'],
+      datetime: new Date(record.fields['Date'] + 'T00:00:00Z').getTime(),
+      event_type: record.fields['Event Type'],
+      topic: record.fields['Topic'],
+      speakers: record.fields["Who's speaking?"],
+      url: record.fields['Event URL'],
+      submitterID: record.fields['Submitter Slack ID']
+    };
     // If followup time has not passed and there is no report completed
     if (now < followupAt && !record.fields['Event Rating']) {
-      const eventObj = {
-        id: record.getId(),
-        event_name: record.fields['Name'],
-        event_date: record.fields['Date'],
-        datetime: new Date(record.fields['Date'] + 'T00:00:00Z').getTime(),
-        followup_at: followupAt,
-        event_type: record.fields['Event Type'],
-        topic: record.fields['Topic'],
-        speakers: record.fields["Who's speaking?"],
-        url: record.fields['Event URL'],
-        submitterID: record.fields['Submitter Slack ID']
-      };
-      // Schedule the followup
+      // Add followup to event object
+      eventObj.followup_at = followupAt;
+      // Schedule followup
       schedule.followup(app, eventObj);
-      // Return the reformatted event object
-      return eventObj;
     }
+    // Return the reformatted event object
+    return eventObj;
   },
   /**
    * Clear a specific scheduled followup timeout
@@ -70,8 +71,11 @@ const schedule = {
     const now = new Date().getTime();
     const timeout = recordObj.followup_at - now;
     timeoutCb = () => {
-      dmFollowup(app, recordObj);
-      channelFollowup(app, recordObj);
+      // If there is no event rating and there is a followup time, send the followup
+      if (!!recordObj.event_rating === false && !!recordObj.followup_at) {
+        dmFollowup(app, recordObj);
+        channelFollowup(app, recordObj);
+      }
       schedule.clear(timeoutKey);
     }
     timeouts[timeoutKey] = setTimeout(timeoutCb, timeout);
