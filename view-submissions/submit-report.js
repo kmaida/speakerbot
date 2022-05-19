@@ -42,6 +42,9 @@ const submitReport = (app, at, utils) => {
     if (!utils.isNumberFormat(payload.reach.r_reach.value)) {
       ackParams.errors.reach = 'Only numbers are allowed in this field for metrics reasons. If you\'d like to add more context, use the "Report" field below.'
     }
+    if (data.report.length > 300) {
+      ackParams.errors.report = 'Only 300 characters are allowed in this field. Please truncate your report, or link to a more detailed document if needed.'
+    }
     if (utils.objNotEmpty(ackParams.errors)) {
       await ack(ackParams);
       return;
